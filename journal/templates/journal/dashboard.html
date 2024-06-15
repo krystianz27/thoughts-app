@@ -1,0 +1,16 @@
+{% extends "journal/navbar.html" %}
+
+{% block content %}
+    <br>
+
+    <div class="container bg-white shadow-md p-5 form-layout">
+
+        <h2>{{user}}</h2>
+        <br>
+        <p>Welcome, {{user}}! This id your dashboard.</p>
+
+        <img style="width: 200px; height:200px" src="{{profilePic.profile_pic.url}}" alt="Profile photo">
+
+    </div>
+
+{% endblock %}

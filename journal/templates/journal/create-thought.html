@@ -1,0 +1,30 @@
+{% extends "journal/navbar.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    {% comment %} <head>
+        <title>Edenthought | Create thought</title>
+    </head> {% endcomment %}
+    <br>
+
+    <div class="container bg-white shadow-md p-5 form-layout">
+
+        <h1>Create a thought</h1>
+        <p>You may create a thought below:</p>
+        <br>
+
+        <form method="POST" autocomplete="off" action="">
+            {% csrf_token %}
+            {% comment %} {{CreateThoughtForm|crispy}} {% endcomment %}
+            {{CreateThoughtForm.title|as_crispy_field}}
+            {{CreateThoughtForm.content|as_crispy_field}}
+            <br>
+
+            <button class="btn btn-outline-primary btn-md w-100 btn-block p-3" type="Submit">&nbsp; <i class="fa fa-plus" aria-hidden="true"></i> Create a thought</button>
+        </form>
+
+    </div>
+    <br>
+
+{% endblock %}
