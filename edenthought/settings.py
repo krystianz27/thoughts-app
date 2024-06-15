@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.read("SECRET_KEY")
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -194,7 +194,7 @@ AWS_S3_FILE_OVERWRITE = False
 
 
 # NOT NECESSARY BELOW THIS LINE
-# AWS_DEFAULT_ACL = None  # Set this if you don't want public read access by default
+# AWS_DEFAULT_ACL = None  # Set this if you don't want pub access by default
 # AWS_QUERYSTRING_AUTH = (
 #     False  # To remove complex query parameter authentication for static files
 # )
