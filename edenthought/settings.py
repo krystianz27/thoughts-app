@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["django-thoughts-app.onrender.com", "*"]
 
@@ -81,25 +81,25 @@ WSGI_APPLICATION = "edenthought.wsgi.application"
 
 # SQlite Database
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
 
 
 # RDS / PostgreSQL Database configuration
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": env("DB_NAME"),
-        "USER": env("DB_USER"),
-        "PASSWORD": env("DB_PASSWORD"),
-        "HOST": env("DB_HOST"),
-        "PORT": "5432",
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": env("DB_NAME"),
+#         "USER": env("DB_USER"),
+#         "PASSWORD": env("DB_PASSWORD"),
+#         "HOST": env("DB_HOST"),
+#         "PORT": "5432",
+#     }
+# }
 
 
 # Password validation
@@ -146,6 +146,8 @@ STATIC_URL = "static/"
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
+# STATIC_ROOT = BASE_DIR / "staticfiles"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -172,25 +174,25 @@ pip install boto3
 
 # AWS access Key ID
 # AWS Secret Access Key
-# AWS_ACCESS_KEY_ID = ""
-# AWS_SECRET_ACCESS_KEY = ""
+AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
 
-AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
+# AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
 
-# Django storage configuration for S3
-STORAGES = {
-    # Media file management
-    "default": {
-        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
-    },
-    # CSS, JS file management
-    "staticfiles": {
-        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
-    },
-}
+# # Django storage configuration for S3
+# STORAGES = {
+#     # Media file management
+#     "default": {
+#         "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+#     },
+#     # CSS, JS file management
+#     "staticfiles": {
+#         "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+#     },
+# }
 
-AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
-AWS_S3_FILE_OVERWRITE = False
+# AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
+# AWS_S3_FILE_OVERWRITE = False
 # ^protect from overwriting file with the same name by hashing
 
 
@@ -220,36 +222,3 @@ AWS_S3_FILE_OVERWRITE = False
 #    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
 #    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 #    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
-
-
-# PYTHON DECOUPLE
-# from decouple import config
-# import os
-# from pathlib import Path
-
-# BASE_DIR = Path(__file__).resolve().parent.parent
-
-# AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
-# AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
-# AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
-# AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME', default='us-east-1')
-# AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com
-
-
-# DJANGO-ENVIRON
-# import os
-# from pathlib import Path
-# import environ
-
-# BASE_DIR = Path(__file__).resolve().parent.parent
-
-# # Initialize environ
-# env = environ.Env()
-# environ.Env.read_env(os.path.join(BASE_DIR, '.env'))  # Load the .env file
-
-# AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
-# AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
-# AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
-# AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME', default='us-east-1')
-# AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-# END AMAZON settings

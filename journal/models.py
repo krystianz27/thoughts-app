@@ -13,7 +13,9 @@ class Thought(models.Model):
 
 class Profile(models.Model):
     profile_pic = models.ImageField(
-        null=True, blank=True, default="default.jpg", upload_to="media/"
+        null=True,
+        blank=True,
+        default="default.jpg",  # upload_to="media/"
     )
     # upload_to is optional to S3 bucket
     user = models.ForeignKey(User, max_length=10, on_delete=models.CASCADE, null=True)
