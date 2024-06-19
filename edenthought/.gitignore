@@ -1,2 +1,2 @@
 .env
-generate_secret_key
+generate_secret_key.py
